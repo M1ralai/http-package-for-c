@@ -1,1 +1,162 @@
-[]
+[
+  {
+    "file": "src/logger/logger.c",
+    "arguments": [
+      "/opt/homebrew/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c11",
+      "-Iinclude",
+      "-c",
+      "src/logger/logger.c",
+      "-o",
+      "obj/logger/logger.o"
+    ],
+    "directory": "/Users/atahandemirer/Developer/http-wrapper",
+    "output": "obj/logger/logger.o"
+  },
+  {
+    "file": "src/io/socket.c",
+    "arguments": [
+      "/opt/homebrew/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c11",
+      "-Iinclude",
+      "-c",
+      "src/io/socket.c",
+      "-o",
+      "obj/io/socket.o"
+    ],
+    "directory": "/Users/atahandemirer/Developer/http-wrapper",
+    "output": "obj/io/socket.o"
+  },
+  {
+    "file": "src/server/server.c",
+    "arguments": [
+      "/opt/homebrew/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c11",
+      "-Iinclude",
+      "-c",
+      "src/server/server.c",
+      "-o",
+      "obj/server/server.o"
+    ],
+    "directory": "/Users/atahandemirer/Developer/http-wrapper",
+    "output": "obj/server/server.o"
+  },
+  {
+    "file": "src/utils/buffer.c",
+    "arguments": [
+      "/opt/homebrew/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c11",
+      "-Iinclude",
+      "-c",
+      "src/utils/buffer.c",
+      "-o",
+      "obj/utils/buffer.o"
+    ],
+    "directory": "/Users/atahandemirer/Developer/http-wrapper",
+    "output": "obj/utils/buffer.o"
+  },
+  {
+    "file": "src/utils/string.c",
+    "arguments": [
+      "/opt/homebrew/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c11",
+      "-Iinclude",
+      "-c",
+      "src/utils/string.c",
+      "-o",
+      "obj/utils/string.o"
+    ],
+    "directory": "/Users/atahandemirer/Developer/http-wrapper",
+    "output": "obj/utils/string.o"
+  },
+  {
+    "file": "src/http/request.c",
+    "arguments": [
+      "/opt/homebrew/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c11",
+      "-Iinclude",
+      "-c",
+      "src/http/request.c",
+      "-o",
+      "obj/http/request.o"
+    ],
+    "directory": "/Users/atahandemirer/Developer/http-wrapper",
+    "output": "obj/http/request.o"
+  },
+  {
+    "file": "src/http/response.c",
+    "arguments": [
+      "/opt/homebrew/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c11",
+      "-Iinclude",
+      "-c",
+      "src/http/response.c",
+      "-o",
+      "obj/http/response.o"
+    ],
+    "directory": "/Users/atahandemirer/Developer/http-wrapper",
+    "output": "obj/http/response.o"
+  },
+  {
+    "file": "src/http/parser.c",
+    "arguments": [
+      "/opt/homebrew/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c11",
+      "-Iinclude",
+      "-c",
+      "src/http/parser.c",
+      "-o",
+      "obj/http/parser.o"
+    ],
+    "directory": "/Users/atahandemirer/Developer/http-wrapper",
+    "output": "obj/http/parser.o"
+  },
+  {
+    "file": "src/error/error.c",
+    "arguments": [
+      "/opt/homebrew/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c11",
+      "-Iinclude",
+      "-c",
+      "src/error/error.c",
+      "-o",
+      "obj/error/error.o"
+    ],
+    "directory": "/Users/atahandemirer/Developer/http-wrapper",
+    "output": "obj/error/error.o"
+  },
+  {
+    "file": "src/main.c",
+    "arguments": [
+      "/opt/homebrew/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c11",
+      "-Iinclude",
+      "-c",
+      "src/main.c",
+      "-o",
+      "obj/main.o"
+    ],
+    "directory": "/Users/atahandemirer/Developer/http-wrapper",
+    "output": "obj/main.o"
+  }
+]
