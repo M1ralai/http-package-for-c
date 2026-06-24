@@ -7,6 +7,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
+#include "error/error.h"
+
+int main() {
+	hcb_error_t *err = new_hcb_error("SERVER");
+	hcb_error_set(err, "SERVER basarili sekilde baslatildi ve kapatiliyor");
+	printf("%s", hcb_error_formatted_get(err));
+	err = hcb_error_free(err);
+}
+
 /*
 int response(int *sock) {
 	int buffer_len = 320;

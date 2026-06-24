@@ -1,11 +1,8 @@
 bin/*
-# İşletim Sistemi Kalıntıları
+obj/*
 .DS_Store
 .AppleDouble
 .LSOverride
 
-# Çöp Kutusu
 .trash/
 
-# İsteğe Bağlı: Belirli Eklenti Önbellekleri / Hassas Veriler
-# .obsidian/plugins/*/data.json
