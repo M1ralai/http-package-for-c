@@ -9,14 +9,15 @@
 #include <unistd.h>
 
 #include "error/error.h"
-#include "io/socket.h"
 #include "server/server.h"
 
 int main() {
-	hcb_server_t *server = hcb_new_server(hcb_new_socket());
-	hcb_server_start(server, 1);
+	hcb_server_t *server = hcb_new_server("8080");
+	hcb_server_start(server);
 	if (hcb_error_get_is_error(hcb_server_get_error(server))) {
 		printf("%s", hcb_error_formatted_get(hcb_server_get_error(server)));
+	} else {
+		printf("There is no error congrats");
 	}
 }
 

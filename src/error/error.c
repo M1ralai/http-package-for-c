@@ -26,7 +26,7 @@ void hcb_error_set(hcb_error_t *err, const char *msg) {
 	err->is_error = 1;
 }
 
-const char *hcb_error_formatted_get(hcb_error_t *err) {
+const char *hcb_error_formatted_get(const hcb_error_t *err) {
 	char *ret;
 	ret = malloc(128);
 	snprintf(ret, 128, "MODULE: %s; MSG: %s;", err->module, err->msg);
@@ -40,6 +40,6 @@ hcb_error_t *hcb_error_free(hcb_error_t *err) {
 	return NULL;
 }
 
-int hcb_error_get_is_error(hcb_error_t *err) {
+int hcb_error_get_is_error(const hcb_error_t *err) {
 	return err->is_error;
 }
