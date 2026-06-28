@@ -48,11 +48,42 @@ void hcb_socket_start(hcb_socket_t *sock) {
 		hcb_error_set(sock->err, err_buf);
 		return;
 	}
-	sock->socket_fd = socket_fd;
+	int yes = 1;
+	setsockopt(socket_fd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof yes);
+
+	err = bind(socket_fd, res->ai_addr, res->ai_addrlen);
+	if (err != 0) {
+		perror("error occured when binding");
+		exit(-1);
+	}
 	freeaddrinfo(res);
+	sock->socket_fd = socket_fd;
 }
 
-void *hcb_socket_free(hcb_socket_t *sock) {
+void hcb_socket_listen(hcb_socket_t *sock) {
+	int err = listen(sock->socket_fd, 5);
+	if (err != 0) {
+		char err_buf[ERROR_MESSAGE_SIZE];
+		snprintf(err_buf, ERROR_MESSAGE_SIZE, "socket error occured while listening: %s", strerror(errno));
+		hcb_error_set(sock->err, err_buf);
+		return;
+	}
+}
+
+int hcb_socket_accept_loop(hcb_socket_t *sock) {
+	struct sockaddr conn_sock;
+	int len = sizeof(conn_sock);
+	int ret_fd = accept(sock->socket_fd, &conn_sock, (socklen_t *)&len);
+	if (ret_fd == -1) {
+		char err_buf[ERROR_MESSAGE_SIZE];
+		snprintf(err_buf, ERROR_MESSAGE_SIZE, "socket error occured while accepting: %s", strerror(errno));
+		hcb_error_set(sock->err, err_buf);
+		return 0;
+	}
+	return ret_fd;
+}
+
+hcb_socket_t *hcb_socket_free(hcb_socket_t *sock) {
 	if (sock != NULL) {
 		if (sock->err != NULL) {
 			sock->err = hcb_error_free(sock->err);

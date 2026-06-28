@@ -1,7 +1,9 @@
 #include "conn.h"
 #include "../error/error.h"
+#include <sys/socket.h>
 
 #include <stdlib.h>
+#include <unistd.h>
 
 struct hcb_conn {
 	int conn_fd;
@@ -17,6 +19,26 @@ hcb_conn_t *hcb_new_conn() {
 	conn->is_active = 0;
 	conn->err = err;
 	return conn;
+}
+
+void hcb_conn_establish(hcb_conn_t *conn, const int conn_fd) {
+	conn->conn_fd = conn_fd;
+	conn->is_active = 1;
+	char buf[256] = "Hello World!";
+	int ret = send(conn->conn_fd, buf, 256, 0);
+	if (ret == -1) {
+		hcb_error_set(conn->err, "establishment error");
+	}
+	close(conn->conn_fd);
+	conn->is_active = 0;
+}
+
+int hcb_conn_get_is_active(hcb_conn_t *conn) {
+	return conn->is_active;
+}
+
+hcb_error_t *hcb_conn_get_error(hcb_conn_t *conn) {
+	return conn->err;
 }
 
 hcb_conn_t *hcb_conn_free(hcb_conn_t *conn) {

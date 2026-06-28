@@ -26,6 +26,10 @@ void hcb_error_set(hcb_error_t *err, const char *msg) {
 	err->is_error = 1;
 }
 
+void hcb_error_reset(hcb_error_t *err) {
+	err->is_error = 0;
+}
+
 const char *hcb_error_formatted_get(const hcb_error_t *err) {
 	char *ret;
 	ret = malloc(128);

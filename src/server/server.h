@@ -6,10 +6,11 @@ extern "C" {
 #endif
 
 #include "../error/error.h"
+#include "../io/pool.h"
 
 typedef struct hcb_server hcb_server_t;
 
-hcb_server_t *hcb_new_server(const char *port);
+hcb_server_t *hcb_new_server(const char *port, hcb_pool_config_t *cfg);
 
 void hcb_server_start(hcb_server_t *server);
 
