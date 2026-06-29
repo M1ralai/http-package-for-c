@@ -2,6 +2,8 @@
 #include "../error/error.h"
 #include <sys/socket.h>
 
+#include <pthread.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -21,6 +23,26 @@ hcb_conn_t *hcb_new_conn() {
 	return conn;
 }
 
+void *hcb_conn_loop(void *arg) {
+	hcb_conn_t *conn = (hcb_conn_t *)arg;
+	int running = 1;
+	while (running) {
+		char buf[256];
+		int ret = recv(conn->conn_fd, buf, 256, 0);
+		if (ret == -1) {
+			hcb_error_set(conn->err, "error occured");
+			return NULL;
+		} else if (ret == 0) {
+			hcb_error_set(conn->err, "connection closed by peer");
+			return NULL;
+		}
+		printf("%s", buf);
+	}
+	close(conn->conn_fd);
+	conn->is_active = 0;
+	return NULL;
+}
+
 void hcb_conn_establish(hcb_conn_t *conn, const int conn_fd) {
 	conn->conn_fd = conn_fd;
 	conn->is_active = 1;
@@ -29,8 +51,8 @@ void hcb_conn_establish(hcb_conn_t *conn, const int conn_fd) {
 	if (ret == -1) {
 		hcb_error_set(conn->err, "establishment error");
 	}
-	close(conn->conn_fd);
-	conn->is_active = 0;
+	pthread_t t;
+	pthread_create(&t, NULL, hcb_conn_loop, conn);
 }
 
 int hcb_conn_get_is_active(hcb_conn_t *conn) {

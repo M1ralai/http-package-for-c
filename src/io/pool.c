@@ -46,6 +46,7 @@ void hcb_pool_new_connection(hcb_pool_t *pool, const int conn_fd) {
 				hcb_error_reset(hcb_conn_get_error(pool->conn[i]));
 				return;
 			}
+			return;
 		}
 	}
 }
